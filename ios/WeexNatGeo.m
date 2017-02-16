@@ -1,15 +1,15 @@
 //
-//  NatWeexGeo.m
+//  WeexNatGeo.m
 //
 //  Created by huangyake on 17/1/7.
 //  Copyright © 2017 Nat. All rights reserved.
 //
 
 
-#import "NatWeexGeo.h"
+#import "WeexNatGeo.h"
 #import "NatGeoLocation.h"
 
-@implementation NatWeexGeo
+@implementation WeexNatGeo
 WX_EXPORT_METHOD(@selector(get:))
 WX_EXPORT_METHOD(@selector(watch::))
 WX_EXPORT_METHOD(@selector(clearWatch:))

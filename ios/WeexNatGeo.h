@@ -1,5 +1,5 @@
 //
-//  NatWeexGeo.h
+//  WeexNatGeo.h
 //
 //  Created by huangyake on 17/1/7.
 //  Copyright © 2017 Nat. All rights reserved.
@@ -20,7 +20,7 @@
 - (void)clearWatch:(WXModuleCallback)callback;
 @end
 
-@interface NatWeexGeo : NSObject<NatGeoPro>
+@interface WeexNatGeo : NSObject<NatGeoPro>
 
 
 @end
