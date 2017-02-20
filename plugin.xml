@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>headers
+<?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://www.w3.org/ns/widgets"
     id="nat-geolocation"
@@ -32,6 +32,25 @@
 
      <!-- android -->
      <platform name="android">
+         <config-file target="config.xml" parent="/*">
+             <feature name="GeolocationModule">
+                 <param name="category" value="module" />
+                 <param name="android-package" value="com.nat.weex.GeolocationModule" />
+                 <param name="api" value="nat/network/transfer" />
+             </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+             <uses-permission android:name="android.permission.INTERNET" />
+             <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        </config-file>
+
+        <source-file
+             src="android/GeolocationModule.java"
+            target-dir="src/com/alibaba/weex/nat/GeolocationModule.java" />
+
+        <framework src="com.nat:geolocation:1.0.2" />
      </platform>
 
 </plugin>
