@@ -1,17 +1,19 @@
 {
-  "name": "${natlocation}",
-  "version": "1.0.0",
-  "description": "Weex Plugin-${pluginName}",
+  "name": "nat-geolocation",
+  "version": "0.0.1",
+  "description": "Nat.js module: Geolocation",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "Nat",
+    "geolocation",
+    "geo",
     "Weex",
     "Plugin",
-    "commponent",
     "module",
-    "handle",
-    "weexpack"
+    "handle"
   ],
-  "author": ""
+  "author": "Acathur",
+  "license": "MIT"
 }
