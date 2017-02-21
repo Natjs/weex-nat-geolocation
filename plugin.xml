@@ -1,51 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://www.w3.org/ns/widgets"
-    id="nat-media-image"
+    id="nat-geolocation"
     version="0.1.0">
-    <name>nat-media-image</name>
-    <description></description>
+    <name>nat-geolocation</name>
+    <description>get location</description>
     <license>MIT</license>
-    <keywords>weex,plugin,nat,natjs,image</keywords>
-    <repo>https://github.com/Natjs/weex-nat-media-image.git</repo>
-    <issue>https://github.com/Natjs/weex-nat-media-image/issues</issue>
+    <keywords>weex,plugin,nat,natjs,geo,location,geolocation</keywords>
+    <repo>https://github.com/Natjs/weex-nat-geolocation.git</repo>
+    <issue>https://github.com/Natjs/weex-nat-geolocation/issues</issue>
     
      <!-- ios -->
      <platform name="ios">
-         <framework src="NatImage" type="podspec" spec="" />
+         <framework src="Foundation.framework" />
+         <framework src="CoreLocation.framework" />
+         <framework src="NatGeolocation" type="podspec" spec="" />
+         <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+             <string>$需要定位</string>
+         </config-file>
          <config-file target="WeexpluginConfig.xml" parent="/*">
              <feature name="WXTestModule">
                  <param name="category" value="module" />
-                 <param name="ios-package" value="WeexNatImage" />
-                 <param name="api" value="nat/media/image" />
+                 <param name="ios-package" value="WeexNatGeo" />
+                 <param name="api" value="nat/geolocation" />
              </feature>
          </config-file>
-         <header-file src="ios/WeexNatImage.h"/>
-         <source-file src="ios/WeexNatImage.m"/>
+         
+         <header-file src="ios/WeexNatGeo.h"/>
+         <source-file src="ios/WeexNatGeo.m"/>
      </platform>
 
      <!-- android -->
      <platform name="android">
-        <config-file target="config.xml" parent="/*">
-             <feature name="MediaImageModule">
+         <config-file target="config.xml" parent="/*">
+             <feature name="GeolocationModule">
                  <param name="category" value="module" />
-                 <param name="android-package" value="com.nat.weex.MediaImageModule" />
-                 <param name="api" value="nat/media/image" />
+                 <param name="android-package" value="com.nat.weex.GeolocationModule" />
+                 <param name="api" value="nat/geolocation" />
              </feature>
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.INTERNET" />
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.CAMERA" />
+             <uses-permission android:name="android.permission.INTERNET" />
+             <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         </config-file>
 
         <source-file
-             src="android/MediaImageModule.java"
-            target-dir="src/com/alibaba/weex/nat/MediaImageModule.java" />
+             src="android/GeolocationModule.java"
+            target-dir="src/com/alibaba/weex/nat/GeolocationModule.java" />
 
-        <framework src="com.nat:media-image:1.0.5" />
+        <framework src="com.nat:geolocation:1.0.2" />
         <framework src="com.nat:permission:1.0.1" />
      </platform>
 
