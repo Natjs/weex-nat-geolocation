@@ -3,11 +3,12 @@ package com.nat.weex;
 import android.Manifest;
 import android.app.Activity;
 
-import com.nat.geolocation.HLConstant;
-import com.nat.geolocation.HLGeoModule;
-import com.nat.geolocation.HLModuleResultListener;
-import com.nat.geolocation.HLUtil;
+import com.nat.geolocation.Constant;
+import com.nat.geolocation.GeoModule;
+import com.nat.geolocation.ModuleResultListener;
+import com.nat.geolocation.Util;
 import com.nat.permission.PermissionChecker;
+
 import com.taobao.weex.annotation.JSMethod;
 import com.taobao.weex.bridge.JSCallback;
 import com.taobao.weex.common.WXModule;
@@ -15,11 +16,11 @@ import com.taobao.weex.common.WXModule;
 import java.util.HashMap;
 
 /**
- * Created by Daniel on 17/2/17.
- * Copyright (c) 2017 Nat. All rights reserved.
+ * Created by Acathur on 17/2/17.
+ * Copyright (c) 2017 Instapp. All rights reserved.
  */
 
-public class GeolocationModule extends WXModule {
+public class Geolocation extends WXModule {
 
     JSCallback mGetCallback;
     JSCallback mWatchCallback;
@@ -35,16 +36,16 @@ public class GeolocationModule extends WXModule {
             HashMap<String, String> dialog = new HashMap<>();
             dialog.put("title", "权限申请");
             dialog.put("message", "请允许定位权限");
-            PermissionChecker.requestPermissions((Activity) mWXSDKInstance.getContext(), dialog, new com.nat.permission.HLModuleResultListener() {
+            PermissionChecker.requestPermissions((Activity) mWXSDKInstance.getContext(), dialog, new com.nat.permission.ModuleResultListener() {
                 @Override
                 public void onResult(Object o) {
                     if (o != null && o.toString().equals("true")) {
-                        jsCallback.invoke(HLUtil.getError(HLConstant.LOCATION_PERMISSION_DENIED, HLConstant.LOCATION_PERMISSION_DENIED_CODE));
+                        jsCallback.invoke(Util.getError(Constant.LOCATION_PERMISSION_DENIED, Constant.LOCATION_PERMISSION_DENIED_CODE));
                     }
                 }
             }, GET_REQUEST_CODE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION);
         } else {
-            HLGeoModule.getInstance(mWXSDKInstance.getContext()).get(new HLModuleResultListener() {
+            GeoModule.getInstance(mWXSDKInstance.getContext()).get(new ModuleResultListener() {
                 @Override
                 public void onResult(Object o) {
                     jsCallback.invoke(o);
@@ -62,16 +63,16 @@ public class GeolocationModule extends WXModule {
             HashMap<String, String> dialog = new HashMap<>();
             dialog.put("title", "权限申请");
             dialog.put("message", "请允许定位权限");
-            PermissionChecker.requestPermissions((Activity) mWXSDKInstance.getContext(), dialog, new com.nat.permission.HLModuleResultListener() {
+            PermissionChecker.requestPermissions((Activity) mWXSDKInstance.getContext(), dialog, new com.nat.permission.ModuleResultListener() {
                 @Override
                 public void onResult(Object o) {
                     if (o != null && o.toString().equals("true")) {
-                        jsCallback.invoke(HLUtil.getError(HLConstant.LOCATION_PERMISSION_DENIED, HLConstant.LOCATION_PERMISSION_DENIED_CODE));
+                        jsCallback.invoke(Util.getError(Constant.LOCATION_PERMISSION_DENIED, Constant.LOCATION_PERMISSION_DENIED_CODE));
                     }
                 }
             }, WATCH_REQUEST_CODE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION);
         } else {
-            HLGeoModule.getInstance(mWXSDKInstance.getContext()).watch(param, new HLModuleResultListener() {
+            GeoModule.getInstance(mWXSDKInstance.getContext()).watch(param, new ModuleResultListener() {
                 @Override
                 public void onResult(Object o) {
                     jsCallback.invokeAndKeepAlive(o);
@@ -82,7 +83,7 @@ public class GeolocationModule extends WXModule {
 
     @JSMethod
     public void clearWatch(final JSCallback jsCallback){
-        HLGeoModule.getInstance(mWXSDKInstance.getContext()).clearWatch(new HLModuleResultListener() {
+        GeoModule.getInstance(mWXSDKInstance.getContext()).clearWatch(new ModuleResultListener() {
             @Override
             public void onResult(Object o) {
                 jsCallback.invoke(o);
@@ -95,27 +96,27 @@ public class GeolocationModule extends WXModule {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == GET_REQUEST_CODE) {
             if (PermissionChecker.hasAllPermissionsGranted(grantResults)) {
-                HLGeoModule.getInstance(mWXSDKInstance.getContext()).get(new HLModuleResultListener() {
+                GeoModule.getInstance(mWXSDKInstance.getContext()).get(new ModuleResultListener() {
                     @Override
                     public void onResult(Object o) {
                         mGetCallback.invoke(o);
                     }
                 });
             } else {
-                if (mGetCallback != null) mGetCallback.invoke(HLUtil.getError(HLConstant.LOCATION_PERMISSION_DENIED, HLConstant.LOCATION_PERMISSION_DENIED_CODE));
+                if (mGetCallback != null) mGetCallback.invoke(Util.getError(Constant.LOCATION_PERMISSION_DENIED, Constant.LOCATION_PERMISSION_DENIED_CODE));
             }
         }
 
         if (requestCode == WATCH_REQUEST_CODE) {
             if (PermissionChecker.hasAllPermissionsGranted(grantResults)) {
-                HLGeoModule.getInstance(mWXSDKInstance.getContext()).watch(mWatchParam, new HLModuleResultListener() {
+                GeoModule.getInstance(mWXSDKInstance.getContext()).watch(mWatchParam, new ModuleResultListener() {
                     @Override
                     public void onResult(Object o) {
                         mWatchCallback.invokeAndKeepAlive(o);
                     }
                 });
             } else {
-                if (mWatchCallback != null) mWatchCallback.invoke(HLUtil.getError(HLConstant.LOCATION_PERMISSION_DENIED, HLConstant.LOCATION_PERMISSION_DENIED_CODE));
+                if (mWatchCallback != null) mWatchCallback.invoke(Util.getError(Constant.LOCATION_PERMISSION_DENIED, Constant.LOCATION_PERMISSION_DENIED_CODE));
             }
         }
     }

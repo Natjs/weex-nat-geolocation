@@ -2,21 +2,22 @@
 //  WeexNatGeo.m
 //
 //  Created by huangyake on 17/1/7.
-//  Copyright © 2017 Nat. All rights reserved.
+//  Copyright © 2017 Instapp. All rights reserved.
 //
 
 
 #import "WeexNatGeo.h"
-#import "NatGeoLocation.h"
+#import "NatGeolocation.h"
 
 @implementation WeexNatGeo
+@synthesize weexInstance;
 WX_EXPORT_METHOD(@selector(get:))
 WX_EXPORT_METHOD(@selector(watch::))
 WX_EXPORT_METHOD(@selector(clearWatch:))
 
 
 - (void)clearWatch:(WXModuleCallback)callback{
-    [[NatGeoLocation singletonManger] clearWatch:^(id error,id result) {
+    [[NatGeolocation singletonManger] clearWatch:^(id error,id result) {
         if (error) {
             if (callback) {
                 callback(error);
@@ -31,7 +32,7 @@ WX_EXPORT_METHOD(@selector(clearWatch:))
 
 
 - (void)watch:(NSDictionary *)options :(WXKeepAliveCallback)callback{
-    [[NatGeoLocation singletonManger] watch:options :^(id error,id result) {
+    [[NatGeolocation singletonManger] watch:options :^(id error,id result) {
         if (error) {
             if (callback) {
                 callback(error,YES);
@@ -47,7 +48,7 @@ WX_EXPORT_METHOD(@selector(clearWatch:))
 }
 - (void)get:(WXModuleCallback)callback{
     
-    [[NatGeoLocation singletonManger] get:^(id error,id result) {
+    [[NatGeolocation singletonManger] get:^(id error,id result) {
         if (error) {
             if (callback) {
                 callback(error);
