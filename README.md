@@ -14,11 +14,11 @@ npm install natjs --save
 
 ## Usage
 
-Use in weex file (.we)
+Use in weex project (`.vue`/`.we`)
 
 ```html
 <script>
-import 'Nat' from 'natjs'
+import Nat from 'natjs'
 
 // get
 Nat.geolocation.get((err, ret) => {
@@ -37,4 +37,3 @@ Nat.geolocation.clearWatch()
 ```
 
 See the Nat [Documentation](http://natjs.com/) for more details.
-

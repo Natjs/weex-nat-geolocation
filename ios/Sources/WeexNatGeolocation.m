@@ -1,20 +1,22 @@
 //
-//  WeexNatGeo.m
+//  WeexNatGeolocation.m
 //
 //  Created by huangyake on 17/1/7.
 //  Copyright © 2017 Instapp. All rights reserved.
 //
 
 
-#import "WeexNatGeo.h"
-#import "NatGeolocation.h"
+#import "WeexNatGeolocation.h"
+#import <WeexPluginLoader/WeexPluginLoader.h>
+#import <NatGeolocation/NatGeolocation.h>
 
-@implementation WeexNatGeo
+@implementation WeexNatGeolocation
 @synthesize weexInstance;
+
+WX_PlUGIN_EXPORT_MODULE(nat/geolocation, WeexNatGeolocation)
 WX_EXPORT_METHOD(@selector(get:))
 WX_EXPORT_METHOD(@selector(watch::))
 WX_EXPORT_METHOD(@selector(clearWatch:))
-
 
 - (void)clearWatch:(WXModuleCallback)callback{
     [[NatGeolocation singletonManger] clearWatch:^(id error,id result) {
@@ -22,7 +24,7 @@ WX_EXPORT_METHOD(@selector(clearWatch:))
             if (callback) {
                 callback(error);
             }
-        }else{
+        } else {
             if (callback) {
                 callback(result);
             }
@@ -30,14 +32,13 @@ WX_EXPORT_METHOD(@selector(clearWatch:))
     }];
 }
 
-
 - (void)watch:(NSDictionary *)options :(WXKeepAliveCallback)callback{
     [[NatGeolocation singletonManger] watch:options :^(id error,id result) {
         if (error) {
             if (callback) {
                 callback(error,YES);
             }
-        }else{
+        } else {
             if (callback) {
                 callback(result,YES);
             }
@@ -46,6 +47,7 @@ WX_EXPORT_METHOD(@selector(clearWatch:))
     }];
     
 }
+
 - (void)get:(WXModuleCallback)callback{
     
     [[NatGeolocation singletonManger] get:^(id error,id result) {
@@ -53,18 +55,15 @@ WX_EXPORT_METHOD(@selector(clearWatch:))
             if (callback) {
                 callback(error);
             }
-        }else{
+        } else {
             if (callback) {
                 callback(result);
             }
         }
-
     }];
 }
 
-
 - (void)dealloc{
-    
 }
 
 @end
