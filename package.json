@@ -1,6 +1,6 @@
 {
   "name": "nat-geolocation",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-alpha.1",
   "main": "./js/build/main.js",
   "description": "Nat.js module for weex: Geolocation",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "ios": {
     "type": "pod",
     "name": "WeexNatGeolocation",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "android": {
     "type": "maven",

@@ -20,43 +20,34 @@ WX_EXPORT_METHOD(@selector(clearWatch:))
 
 - (void)clearWatch:(WXModuleCallback)callback{
     [[NatGeolocation singletonManger] clearWatch:^(id error,id result) {
-        if (error) {
-            if (callback) {
+        if (callback) {
+            if (error) {
                 callback(error);
-            }
-        } else {
-            if (callback) {
+            } else {
                 callback(result);
             }
         }
     }];
 }
 
-- (void)watch:(NSDictionary *)options :(WXKeepAliveCallback)callback{
+- (void)watch:(NSDictionary *)options :(WXModuleKeepAliveCallback)callback{
     [[NatGeolocation singletonManger] watch:options :^(id error,id result) {
-        if (error) {
-            if (callback) {
-                callback(error,YES);
-            }
-        } else {
-            if (callback) {
-                callback(result,YES);
+        if (callback) {
+            if (error) {
+                callback(error, YES);
+            } else {
+                callback(result, YES);
             }
         }
-
     }];
-    
 }
 
 - (void)get:(WXModuleCallback)callback{
-    
     [[NatGeolocation singletonManger] get:^(id error,id result) {
-        if (error) {
-            if (callback) {
+        if (callback) {
+            if (error) {
                 callback(error);
-            }
-        } else {
-            if (callback) {
+            } else {
                 callback(result);
             }
         }

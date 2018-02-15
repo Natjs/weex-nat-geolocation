@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "WeexNatGeolocation"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
 
   s.summary      = "Nat.js weex plugin: nat-geolocation"
   s.description  = <<-DESC
