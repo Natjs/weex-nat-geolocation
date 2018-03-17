@@ -1,6 +1,6 @@
 # nat-geolocation
 
-- [Documentation](http://natjs.com/#/#geolocation)
+- [Documentation](http://natjs.com/#/reference/geolocation)
 - [Github](https://github.com/natjs/weex-nat-geolocation)
 
 ## Installation
